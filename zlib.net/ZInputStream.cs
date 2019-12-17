@@ -92,22 +92,22 @@ namespace ComponentAce.Compression.Libs.zlib
 		
 		internal System.IO.Stream in_Renamed = null;
 		
-		public ZInputStream(System.IO.Stream in_Renamed):base(in_Renamed)
+		public ZInputStream(System.IO.Stream in_Renamed, int wbits = ZStream.DEF_WBITS) :base(in_Renamed)
 		{
 			InitBlock();
 			this.in_Renamed = in_Renamed;
-			z.inflateInit();
+			z.inflateInit(wbits);
 			compress = false;
 			z.next_in = buf;
 			z.next_in_index = 0;
 			z.avail_in = 0;
 		}
 		
-		public ZInputStream(System.IO.Stream in_Renamed, int level):base(in_Renamed)
+		public ZInputStream(System.IO.Stream in_Renamed, int level, int wbits = ZStream.DEF_WBITS) :base(in_Renamed)
 		{
 			InitBlock();
 			this.in_Renamed = in_Renamed;
-			z.deflateInit(level);
+			z.deflateInit(level, wbits);
 			compress = true;
 			z.next_in = buf;
 			z.next_in_index = 0;
