@@ -48,8 +48,8 @@ namespace ComponentAce.Compression.Libs.zlib
 	sealed public class ZStream
 	{
 		
-		private const int MAX_WBITS = 15; // 32K LZ77 window		
-		private static readonly int DEF_WBITS = MAX_WBITS;
+		public const int MAX_WBITS = 15; // 32K LZ77 window		
+		public const int DEF_WBITS = MAX_WBITS;
 		
 		private const int Z_NO_FLUSH = 0;
 		private const int Z_PARTIAL_FLUSH = 1;
