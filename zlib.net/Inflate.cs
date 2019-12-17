@@ -138,12 +138,6 @@ namespace ComponentAce.Compression.Libs.zlib
 				nowrap = 1;
 			}
 			
-			// set window size
-			if (w < 8 || w > 15)
-			{
-				inflateEnd(z);
-				return Z_STREAM_ERROR;
-			}
 			wbits = w;
 			
 			z.istate.blocks = new InfBlocks(z, z.istate.nowrap != 0?null:this, 1 << w);
