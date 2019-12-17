@@ -131,13 +131,22 @@ namespace ComponentAce.Compression.Libs.zlib
 			blocks = null;
 			
 			// handle undocumented nowrap option (no zlib header or check)
-			nowrap = 0;
 			if (w < 0)
 			{
-				w = - w;
+				w = -w;
 				nowrap = 1;
 			}
-			
+			else
+			{
+				nowrap = 0;
+				if (w < 48)
+					w &= 15;
+			}
+
+			/* set number of window bits, free window if different */
+			if (w != 0 && ((w < 8) || (w > 15)))
+				return Z_STREAM_ERROR;
+
 			wbits = w;
 			
 			z.istate.blocks = new InfBlocks(z, z.istate.nowrap != 0?null:this, 1 << w);
